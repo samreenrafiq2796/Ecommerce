@@ -41,8 +41,26 @@
 					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 						<li class="nav-item active">
 							<a class="nav-link" href="index.php">Home</a>
+							
 						</li>
-						<li><a class="nav-link" href="shop.php">Shop</a></li>
+					
+						
+						<li>
+
+							
+						
+								<select name="" id="">
+								<?php 
+									$q = mysqli_query($conn, "select * from category");
+									while ($ddd = mysqli_fetch_array($q)) {
+										echo "<a href='shop.php'><option value=''>". $ddd[1]."</option></a>";
+									}
+
+							?>
+
+								</select>
+							
+						</li>
 						<li><a class="nav-link" href="about.php">About us</a></li>
 						<li><a class="nav-link" href="#">Services</a></li>
 						<li><a class="nav-link" href="#">Blog</a></li>
