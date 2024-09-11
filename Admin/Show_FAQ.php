@@ -62,7 +62,7 @@
         echo "<td>".$row[0]."</td>";
         echo "<td>".$row[1]."</td>";
         echo "<td>".$row[2]."</td>";
-        echo '<td><a href="update.php?update='.$row[0].'"><i class="bi bi-pencil-square"></i></a></td>';
+        echo '<td><a href="updatefaq.php?b='.$row[0].'"><i class="bi bi-pencil-square"></i></a></td>';
         echo '<td><a href="deleteFAQ.php?delete='.$row[0].'"><i class="bi bi-trash3-fill"></i></a></td>';
         echo "</tr>";
     }
