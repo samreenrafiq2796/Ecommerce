@@ -37,6 +37,7 @@
 						Register Your Account
 					</span>
 					
+<<<<<<< HEAD
 					
 					<div class="wrap-input100 validate-input" >
 						<input class="input100" type="text" name="name">
@@ -44,6 +45,13 @@
 						<span class="label-input100">Name</span>
 					</div>
 					
+=======
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="Name">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Name</span>
+					</div>
+>>>>>>> 59b89c26486c4d7202fe7e0cd92a06f227c1eee6
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
@@ -56,6 +64,7 @@
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
+<<<<<<< HEAD
                   
                     <div class="wrap-input100 validate-input" >
 						<input class="input100" type="number" name="number">
@@ -63,10 +72,20 @@
 						<span class="label-input100">Phone Number</span>
 					</div>
                     <div class="wrap-input100 validate-input" >
+=======
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" type="text" name="phonenum">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Phone Number</span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+>>>>>>> 59b89c26486c4d7202fe7e0cd92a06f227c1eee6
 						<input class="input100" type="text" name="address">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Address</span>
 					</div>
+<<<<<<< HEAD
                     
                     <select name="gender">Gender
                         <option value="male">Male</option>
@@ -81,6 +100,21 @@
 							signup
 						</button>
                         <a href="index.php">Sign in Your Account</a>
+=======
+                  
+						<select name="gender" id="" class="form-control">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+
+                        </select>
+					
+<br>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="sub">
+							Sign up
+						</button>
+						<a href="index.php">Sign in Your Account</a>
+>>>>>>> 59b89c26486c4d7202fe7e0cd92a06f227c1eee6
 					</div>
 					
 					
@@ -97,6 +131,7 @@
 		include("../connection.php");
 		session_start();
 		if(isset($_POST["sub"])){
+<<<<<<< HEAD
 			$name = $_POST["name"];
 			$email = $_POST["email"];
 			$password = $_POST["pass"];
@@ -112,6 +147,14 @@
     else{
         echo "<script> alert('Try again')</script>";
     }
+=======
+			$e = $_POST["email"];
+			$p = $_POST["pass"];
+
+			
+
+		}
+>>>>>>> 59b89c26486c4d7202fe7e0cd92a06f227c1eee6
 
 
 ?>
