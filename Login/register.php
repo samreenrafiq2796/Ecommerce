@@ -34,9 +34,15 @@
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" action="" method="post">
 					<span class="login100-form-title p-b-43">
-						Login to continue
+						Register Your Account
 					</span>
 					
+					
+					<div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="name">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Name</span>
+					</div>
 					
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email">
@@ -50,15 +56,31 @@
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
-
-					
+                  
+                    <div class="wrap-input100 validate-input" >
+						<input class="input100" type="number" name="number">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Phone Number</span>
+					</div>
+                    <div class="wrap-input100 validate-input" >
+						<input class="input100" type="text" name="address">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Address</span>
+					</div>
+                    
+                    <select name="gender">Gender
+                        <option value="male">Male</option>
+                        <option value="male">Female</option>
+                    </select>
+                
+                   
 			
 
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" name="sub">
-							Login
+							signup
 						</button>
-						<a href="register.php">Create Your Account</a>
+                        <a href="index.php">Sign in Your Account</a>
 					</div>
 					
 					
@@ -75,25 +97,21 @@
 		include("../connection.php");
 		session_start();
 		if(isset($_POST["sub"])){
-			$e = $_POST["email"];
-			$p = $_POST["pass"];
-
-			$login_q = "select * from user where Email = '$e' and password='$p' and Role='admin'";
-			$run = mysqli_query($conn, $login_q);
-			if(mysqli_num_rows($run) == 1){
-				$data = mysqli_fetch_array($run);
-				$_SESSION["id"] = $data[0];
-				$_SESSION["name"] = $data[1];
-
-				header("location: ../Admin/index.php");
-			}
-			else{
-				echo "<script>
-					alert('Invalid Credentials');
-				</script>";
-			}
-
-		}
+			$name = $_POST["name"];
+			$email = $_POST["email"];
+			$password = $_POST["pass"];
+			$number = $_POST["number"];
+			$address = $_POST["address"];
+			$gen = $_POST["gender"];
+        }
+		$sql="INSERT INTO `user`(`Name`, `EMail`, `Password`, `Gender`, `Phone`, `Address`)
+         VALUES ('$name ','$email','$password','$gen','$number','$address')";
+	if(mysqli_query($conn,$sql)){
+        echo "<script> alert('created successfuly')</script>";
+    }
+    else{
+        echo "<script> alert('Try again')</script>";
+    }
 
 
 ?>
