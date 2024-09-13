@@ -96,6 +96,29 @@
 		if(isset($_POST["sub"])){
 			$e = $_POST["email"];
 			$p = $_POST["pass"];
+			$n = $_POST["Name"];
+			$phunm = $_POST["phonenum"];
+			$add = $_POST["address"];
+			$gen = $_POST["gender"];
+			$role="user";
+
+
+			$insert_query = "INSERT INTO `user`( `Name`, `Email`, `password`, `Gender`, `PhoneNumber`, `Address`, `Role`) 
+			VALUES ('$n','$e','$p','$gen','$phunm','$add','$role')";
+
+			if (mysqli_query($conn, $insert_query)) {
+				echo "<script>
+				alert('Your Account has been created');
+				window.location.href='index.php';
+				</script>";
+			} else {
+				echo "<script>
+				alert('Something Went Wrong');			
+				</script>";
+			}
+			
+	
+
 
 			
 
