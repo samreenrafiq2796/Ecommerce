@@ -55,11 +55,7 @@
 							while ($d= mysqli_fetch_array($fetch_query))
 					{ ?>
 						<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-<<<<<<< HEAD
-						<a class="product-item" href="producdescription.php?p=<?php echo $d[0]?>">
-=======
 						<a class="product-item" href="Productdescripton.php?p=<?php echo $d[0]?>">
->>>>>>> 59b89c26486c4d7202fe7e0cd92a06f227c1eee6
 							<img src="../Admin/<?php echo $d[6];  ?>" class="product-thumbnail" height="250">
 							<h3 class="product-title"><?php echo $d[1];  ?></h3>
 							<strong class="product-price">Rs. <?php echo $d[2];  ?></strong>
@@ -79,11 +75,7 @@ else{
 	while ($d= mysqli_fetch_array($fetch_query))
 { ?>
 	<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-<<<<<<< HEAD
-	<a class="product-item" href="producdescription.php?p=<?php echo $d[0]?>">
-=======
 	<a class="product-item" href="Productdescripton.php?p=<?php echo $d[0]?>">
->>>>>>> 59b89c26486c4d7202fe7e0cd92a06f227c1eee6
 		<img src="../Admin/<?php echo $d[6];  ?>" class="product-thumbnail" height="250">
 		<h3 class="product-title"><?php echo $d[1];  ?></h3>
 		<strong class="product-price">Rs. <?php echo $d[2];  ?></strong>

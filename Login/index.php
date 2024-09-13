@@ -79,7 +79,10 @@
 			$p = $_POST["pass"];
 
 			$login_q = "select * from user where Email = '$e' and password='$p' and Role='admin'";
+			$login_q_user = "select * from user where Email = '$e' and password='$p' and Role='user'";
+
 			$run = mysqli_query($conn, $login_q);
+			$run_user = mysqli_query($conn, $login_q_user);
 			if(mysqli_num_rows($run) == 1){
 				$data = mysqli_fetch_array($run);
 				$_SESSION["id"] = $data[0];
@@ -87,6 +90,16 @@
 
 				header("location: ../Admin/index.php");
 			}
+
+			else if(mysqli_num_rows($run_user) == 1){
+				$user_data = mysqli_fetch_array($run_user);
+				$_SESSION["u_id"] = $user_data[0];
+				$_SESSION["u_name"] = $user_data[1];
+				$_SESSION["u_email"] = $user_data[2];
+
+				header("location: ../user/index.php");
+
+			}	
 			else{
 				echo "<script>
 					alert('Invalid Credentials');

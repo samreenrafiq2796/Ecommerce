@@ -5,7 +5,10 @@
 * Template URI: https://untree.co/
 * License: https://creativecommons.org/licenses/by/3.0/
 */ -->
-<?php include "../connection.php"; ?>
+<?php 
+session_start();
+include "../connection.php"; 
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -65,10 +68,29 @@
 						<li><a class="nav-link" href="#">Services</a></li>
 						<li><a class="nav-link" href="#">Blog</a></li>
 						<li><a class="nav-link" href="contact.php">Contact us</a></li>
+						<li><a class="nav-link" href="#">
+							<?php
+								if (isset($_SESSION["u_name"])) {
+									echo $_SESSION["u_name"];
+								}
+
+							?>
+						</a></li>
+
 					</ul>
 
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-						<li><a class="nav-link" href="#"><img src="images/user.svg"></a></li>
+					<?php
+								if (isset($_SESSION["u_name"])) {
+									echo '<li><a class="nav-link" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true" style="font-size:26px"></i></a></li>';
+									
+								}
+								else{
+									echo '<li><a class="nav-link" href="../login/index.php"><img src="images/user.svg"></a></li>';
+
+								}
+
+							?>
 						<li><a class="nav-link" href="#"><img src="images/cart.svg"></a></li>
 					</ul>
 				</div>
