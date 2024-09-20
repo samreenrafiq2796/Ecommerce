@@ -33,64 +33,114 @@
 
 		<div class="untree_co-section product-section before-footer-section">
 		    <div class="container">
+<!-- 4 -->
+				<?php
+					if(isset($_SESSION["product_already_added"])){
+						echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+							'. $_SESSION["product_already_added"] .'
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>';
+
+						unset($_SESSION["product_already_added"]);
+
+					}
+
+					if(isset($_SESSION["msg"])){
+						echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+							'. $_SESSION["msg"] .'
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>';
+
+						unset($_SESSION["msg"]);
+					}
+				
+				?>
 				<form action="" method="get">
-					<input type="text" name="searchtxt" id="" class="form-control" placeholder="Search Product">
+					<div class="row">
+						<div class="col-md-6">
+							<input type="text" name="searchtxt" id="" class="form-control" placeholder="Search Product">
+						</div>
+						<div class="col-md-6">
+							<select name="opt"  class="form-control">
+								<option value="n">Name</option>
+								<option value="sortaz">Sort A - Z</option>
+								<option value="sortza">Sort Z - A</option>
+								<option value="sorthigh">Price High  - Low</option>
+								<option value="sortlow">Price Low - High</option>
+
+							</select>
+						</div>
+					</div>
 					<center><button type="submit" class="mt-3  btn btn-secondary" name="btn">Search</button></center>
 					<br>
 				</form>
 		      	<div class="row">
 
+				<?php
 
+					if (isset($_GET["btn"])) {
+						$box = $_GET["searchtxt"];
+						$option = $_GET["opt"];
 
-				  <?php
-					if(isset($_GET["btn"])){
-						$a = $_GET["searchtxt"];
-						$fetch_query = mysqli_query($conn, "select * from product where Name='$a'");
-						$found = mysqli_num_rows($fetch_query);
-						if ($found==0) {
-							echo '<div class="alert alert-danger" role="alert">
-							Product Not Found
+						if ($option == "n") {
+							$query = "select * from product where Name like '%$box%'";
+							$run = mysqli_query($conn,$query);
+						}
+						else if($option == "sortaz"){
+							$query = "select * from product order by Name";
+							$run = mysqli_query($conn,$query);
+						}
+						else if($option == "sortza"){
+							$query = "select * from product order by Name desc";
+							$run = mysqli_query($conn,$query);
+						}
+						else if($option == "sorthigh"){
+							$query = "select * from product order by price desc";
+							$run = mysqli_query($conn,$query);
+						}
+						else if($option == "sortlow"){
+							$query = "select * from product order by price";
+							$run = mysqli_query($conn,$query);
+						}
+						else{
+							$query = "select * from product";
+							$run = mysqli_query($conn,$query);
+						}
+						while ($data = mysqli_fetch_array($run)) {
+							echo "<div class='col-md-3 mt-4'>";
+							echo '<div class="card" style="width: 18rem;">
+							<img src="../Admin/'.$data[6].'" class="card-img-top" alt="..." height ="300">
+							<div class="card-body">
+							  <h5 class="text-capitalize card-title">'. $data[1].'</h5>
+							  <p class="card-text text-success">Rs. '. $data[2].'</p>
+							  <a href="Productdescripton.php?p='.$data[0].'" class="btn btn-primary">Show Detail</a>
+							</div>
+						  </div>
 						  </div>';
-						} else {
-							while ($d= mysqli_fetch_array($fetch_query))
-					{ ?>
-						<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-						<a class="product-item" href="Productdescripton.php?p=<?php echo $d[0]?>">
-							<img src="../Admin/<?php echo $d[6];  ?>" class="product-thumbnail" height="250">
-							<h3 class="product-title"><?php echo $d[1];  ?></h3>
-							<strong class="product-price">Rs. <?php echo $d[2];  ?></strong>
-					
-							<span class="icon-cross">
-								<img src="images/cross.svg" class="img-fluid">
-							</span>
-						</a>
-					</div> 
-						
-						
+						}
 
-				<?php	}} }
+					}
+					else{
+						$query = "select * from product";
+						$run = mysqli_query($conn,$query);
+	
+	
+						while ($data = mysqli_fetch_array($run)) {
+							echo "<div class='col-md-3 mt-4'>";
+							echo '<div class="card" style="width: 18rem;">
+							<img src="../Admin/'.$data[6].'" class="card-img-top" alt="..." height ="300">
+							<div class="card-body">
+							  <h5 class="text-capitalize card-title">'. $data[1].'</h5>
+							  <p class="card-text  text-success">Rs '. $data[2].'</p>
+							  <a href="Productdescripton.php?p='.$data[0].'" class="btn btn-primary">Show Detail</a>
 
-else{
-	$fetch_query = mysqli_query($conn, "select * from product");
-	while ($d= mysqli_fetch_array($fetch_query))
-{ ?>
-	<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-	<a class="product-item" href="Productdescripton.php?p=<?php echo $d[0]?>">
-		<img src="../Admin/<?php echo $d[6];  ?>" class="product-thumbnail" height="250">
-		<h3 class="product-title"><?php echo $d[1];  ?></h3>
-		<strong class="product-price">Rs. <?php echo $d[2];  ?></strong>
-
-		<span class="icon-cross">
-			<img src="images/cross.svg" class="img-fluid">
-		</span>
-	</a>
-</div> 
-<?php	}
-
-
-
-}?>
-
+							</div>
+						  </div>
+						  </div>';
+						}
+					}
+				
+				?>
 
 
 

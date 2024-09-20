@@ -7,6 +7,14 @@
 </head>
 <body>
     <?php include "header.php";
+    // 2
+        if (!isset($_SESSION["mycart"])) {
+            $_SESSION["mycart"] = array();
+            $_SESSION["qty"] = array();
+        }
+
+
+
     $id = $_GET["p"];
     $fetch_query = "select * from product where id=$id";
     $run = mysqli_query($conn,$fetch_query);
@@ -24,7 +32,12 @@
                 <p>Rs. <?php echo $a[2];?></p>
 
                 <p><?php echo $a[3];?></p>
-                <a href="addtocart.php" class="btn btn-primary"> Add To Cart</a>
+                <!-- 1 -->
+                <form action="addtocart.php" method="get">
+                    <input type="hidden" name="pro_id" value="<?php echo $a[0]; ?>">
+                    <input type="number" name="qty" id="" class="form-control" value="1">
+                    <button type="submit" name="btn" class="mt-4 btn btn-primary"> Add To Cart</button>
+                </form>
             </div>
         </div>
     </div>

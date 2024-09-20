@@ -48,22 +48,8 @@ include "../connection.php";
 						</li>
 					
 						
-						<li>
+						<li><a class="nav-link" href="shop.php">Shop</a></li>
 
-							
-						
-								<select name="" id="">
-								<?php 
-									$q = mysqli_query($conn, "select * from category");
-									while ($ddd = mysqli_fetch_array($q)) {
-										echo "<a href='shop.php'><option value=''>". $ddd[1]."</option></a>";
-									}
-
-							?>
-
-								</select>
-							
-						</li>
 						<li><a class="nav-link" href="about.php">About us</a></li>
 						<li><a class="nav-link" href="#">Services</a></li>
 						<li><a class="nav-link" href="#">Blog</a></li>
@@ -91,7 +77,13 @@ include "../connection.php";
 								}
 
 							?>
-						<li><a class="nav-link" href="#"><img src="images/cart.svg"></a></li>
+							<!-- 5 -->
+						<li><a class="nav-link" href="#"><img src="images/cart.svg">
+						 <span class="badge bg-secondary">
+								<?php if(isset($_SESSION["mycart"])){
+									 echo count($_SESSION["mycart"]);
+								}  ?>
+						</span></a></li>
 					</ul>
 				</div>
 			</div>
