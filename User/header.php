@@ -78,7 +78,7 @@ include "../connection.php";
 
 							?>
 							<!-- 5 -->
-						<li><a class="nav-link" href="#"><img src="images/cart.svg">
+						<li><a class="nav-link" href="cart.php"><img src="images/cart.svg">
 						 <span class="badge bg-secondary">
 								<?php if(isset($_SESSION["mycart"])){
 									 echo count($_SESSION["mycart"]);
