@@ -35,6 +35,10 @@
 
 		<div class="untree_co-section before-footer-section">
             <div class="container">
+
+          
+
+
               <div class="row mb-5">
                 <form class="col-md-12" method="post">
                   <div class="site-blocks-table">
@@ -54,6 +58,7 @@
 						<?php
 							$i = 0;
 							$total=0; 
+              $_SESSION["total_price"] =0;
 							if (!empty($_SESSION["mycart"])) {
 								// Convert array to string
 
@@ -79,7 +84,8 @@
 								  
 				  
 						<?php	
-						$total = 	$data[2] * $_SESSION["qty"][$i] + $total;						
+						$total = 	$data[2] * $_SESSION["qty"][$i] + $total;		
+           
 						$i++;
 					}
 							} else { ?>
@@ -135,13 +141,15 @@
                           <span class="text-black">Total Amount</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">Rs. <?php echo $total + 150?></strong>
+                          <strong class="text-black">Rs. <?php echo 
+                           $_SESSION["total_price"]			= $total + 150;	
+                          $total + 150?></strong>
                         </div>
                       </div>
         
                       <div class="row">
                         <div class="col-md-12">
-                          <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                          <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout.php'">Proceed To Checkout</button>
                         </div>
                       </div>
                     </div>

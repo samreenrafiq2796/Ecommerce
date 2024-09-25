@@ -53,6 +53,15 @@
 
 						unset($_SESSION["msg"]);
 					}
+
+					if(isset($_SESSION["order_placed"])){
+						echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+							'. $_SESSION["order_placed"] .'
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>';
+
+						unset($_SESSION["order_placed"]);
+					}
 				
 				?>
 				<form action="" method="get">

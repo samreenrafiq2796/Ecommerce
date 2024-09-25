@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2024 at 09:54 AM
+-- Generation Time: Sep 25, 2024 at 09:41 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,8 +39,8 @@ CREATE TABLE `about_us` (
 --
 
 INSERT INTO `about_us` (`ID`, `Title`, `Description`, `Added_At`) VALUES
-(1, 'Anees', 'Designation', '2024-08-25 17:29:08'),
-(2, 'Anees', 'Designation', '2024-08-25 17:30:29');
+(1, 'Our Story', '    Our journey began with a passion for [industry/interest] and a desire to create a shopping  \r\n    ', '2024-08-25 17:29:08'),
+(2, 'Innovation and Technology', 'We invest in cutting-edge technology to enhance your shopping experience. ', '2024-08-25 17:30:29');
 
 -- --------------------------------------------------------
 
@@ -60,8 +60,9 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`ID`, `Name`, `Recorded inserted`) VALUES
 (1, 'Cosmetics', '2024-08-21 06:33:44'),
-(3, 'Makeup', '2024-08-21 06:41:48'),
-(6, 'XYZ', '2024-08-21 06:43:13');
+(7, 'Jewellery', '2024-09-06 06:11:27'),
+(8, 'Perfume', '2024-09-06 06:15:16'),
+(9, 'Men Cloth', '2024-09-06 06:21:21');
 
 -- --------------------------------------------------------
 
@@ -84,8 +85,7 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`ID`, `First Name`, `Last Name`, `E_Mail`, `Message`, `Submit_at`) VALUES
 (1, 'Muhammad ', 'Anees', 'kjsfefe@gmail.com', '', '2024-08-23 07:06:56'),
-(3, 'Muhammad', 'Anees', 'kjsfef@gmail.com', '', '2024-08-23 07:09:07'),
-(4, 'Muhammad', 'Anees', 'kjsfef2@gmail.com', 'ji', '2024-08-23 07:10:23');
+(3, 'Muhammad', 'Anees', 'kjsfef@gmail.com', '', '2024-08-23 07:09:07');
 
 -- --------------------------------------------------------
 
@@ -106,6 +106,28 @@ CREATE TABLE `faq` (
 
 INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Added_At`) VALUES
 (1, 'How are You?', 'I am Fine', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_tbl`
+--
+
+CREATE TABLE `order_tbl` (
+  `Id` int(11) NOT NULL,
+  `Cart_id` varchar(50) NOT NULL,
+  `User_id` int(11) NOT NULL,
+  `Bill` bigint(20) NOT NULL,
+  `Status` varchar(50) NOT NULL DEFAULT 'Order Received'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_tbl`
+--
+
+INSERT INTO `order_tbl` (`Id`, `Cart_id`, `User_id`, `Bill`, `Status`) VALUES
+(1, 'Array', 2, 3750, 'Order Received'),
+(2, '9', 2, 68146, 'Order Received');
 
 -- --------------------------------------------------------
 
@@ -140,10 +162,40 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`ID`, `Name`, `Price`, `Detail`, `Category`, `Record_Inserted_At`, `ProductImage`) VALUES
-(1, 'Makeup Remover', 1500, 'Use to remove Makeup', 3, '2024-08-21 07:44:42', ''),
-(3, 'Makeup ', 1500, 'Use to remove Makeup', 1, '2024-08-21 07:48:16', ''),
-(4, 'File', 300, 'In publishing and graphic design, Lorem ipsum is a placeholder', 6, '2024-08-30 06:40:01', 'ProductImage/Untitled.png'),
-(5, 'alpha', 100, 'In publishing and graphic design, Lorem ipsum is a placeholder', 6, '2024-08-30 06:42:00', 'ProductImage/Untitled.png');
+(7, 'LOOSE POWDER', 2550, 'Ultra-fine powder Ultra-lightweight Long Lasting', 1, '2024-09-06 06:19:22', 'ProductImage/loose_powder04_3_.webp'),
+(8, 'Le Volume Plump & Care Li', 1200, 'New generation lip gloss with effective plumping-volumizing effect.', 1, '2024-09-06 06:20:26', 'ProductImage/main_5_2.webp'),
+(9, 'NAVY LINEN WAISTCOAT', 16999, 'Festive Collection', 9, '2024-09-06 06:22:19', 'ProductImage/ccvc-39344-c5_1_.webp'),
+(10, 'ADDICTED', 2750, 'Citrus, Spices, Woody, Leathery', 8, '2024-09-06 06:23:03', 'ProductImage/addicted_1_.webp'),
+(11, 'JANAN GOLD', 5330, ' Bergamot, Fruity (Red Apple, Pineapple), White Floral, Patchouli, Leather, Smokey, Oak Moss', 8, '2024-09-06 06:23:40', 'ProductImage/janan_-1_1__2.webp'),
+(12, 'J. POUR FEMME', 3995, 'Bergamot, Green Apple, Rose, Black currant, Peach, Amber', 8, '2024-09-06 06:24:26', 'ProductImage/pour-femme-j._1_1.webp');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `Gender` varchar(6) NOT NULL,
+  `PhoneNumber` varchar(50) NOT NULL,
+  `Address` varchar(50) NOT NULL,
+  `Role` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `Name`, `Email`, `password`, `Gender`, `PhoneNumber`, `Address`, `Role`) VALUES
+(1, 'Super Admin', 'admin123@gmail.com', 'abcd123', 'male', '090078601', 'Karachi, nazimabad no 1', 'admin'),
+(2, 'Anees', 'anees@gmail.com', '1234', 'Male', '03122222', 'Karachi', 'user'),
+(3, 'Adeen', 'adeen@gmail.com', '22342', 'male', '4545', 'karachi', 'user'),
+(4, 'amna', 'amna@gmail.com', '123', 'female', '090078601', 'karachi, landhi', 'user'),
+(5, 'zara', 'zara@gmail.com', '111111', 'male', '03001234567', 'karachi, landhi orangi', 'user');
 
 -- --------------------------------------------------------
 
@@ -202,6 +254,13 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `User_id` (`User_id`);
+
+--
 -- Indexes for table `privacy`
 --
 ALTER TABLE `privacy`
@@ -214,6 +273,13 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Name` (`Name`),
   ADD KEY `Category` (`Category`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- Indexes for table `website_info`
@@ -235,7 +301,7 @@ ALTER TABLE `about_us`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -250,6 +316,12 @@ ALTER TABLE `faq`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `privacy`
 --
 ALTER TABLE `privacy`
@@ -259,7 +331,13 @@ ALTER TABLE `privacy`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `website_info`
@@ -270,6 +348,12 @@ ALTER TABLE `website_info`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  ADD CONSTRAINT `order_tbl_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `product`

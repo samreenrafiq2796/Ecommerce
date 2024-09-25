@@ -51,8 +51,7 @@ include "../connection.php";
 						<li><a class="nav-link" href="shop.php">Shop</a></li>
 
 						<li><a class="nav-link" href="about.php">About us</a></li>
-						<li><a class="nav-link" href="#">Services</a></li>
-						<li><a class="nav-link" href="#">Blog</a></li>
+				
 						<li><a class="nav-link" href="contact.php">Contact us</a></li>
 						<li><a class="nav-link" href="#">
 							<?php
