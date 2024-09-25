@@ -1,18 +1,32 @@
-<?php include("header.php");
-if(!isset($_SESSION["u_id"]))
-{
-	header("Location: ../Login/index.php");
-}
-else{
-	$id = $_SESSION["u_id"];
-    $q = "SELECT * FROM `user` WHERE id = $id";
-    $r = mysqli_query($conn,$q);
-    $d = mysqli_fetch_array($r);
-}
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+<head>
+ 
+	</head>
 
+	<body>
 
-
-?>
+	<?php include ("header.php");
+		if (!isset($_SESSION["u_id"])) {
+			header("location: ../login/index.php");
+		}
+		else{
+			$id = $_SESSION["u_id"];
+			$q = "select * from user where id = $id";
+			$run = mysqli_query($conn, $q);
+			$arr= mysqli_fetch_array($run);
+		}
+	
+	
+	?>
+		<!-- End Header/Navigation -->
 
 		<!-- Start Hero Section -->
 			<div class="hero">
@@ -33,6 +47,11 @@ else{
 
 		<div class="untree_co-section">
 		    <div class="container">
+		      <div class="row mb-5">
+		        <div class="col-md-12">
+		          
+		        </div>
+		      </div>
 		      <div class="row">
 		        <div class="col-md-6 mb-5 mb-md-0">
 		          <h2 class="h3 mb-3 text-black">Billing Details</h2>
@@ -41,7 +60,7 @@ else{
 		              <label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
 		              <select id="c_country" class="form-control">
 		                <option value="1">Select a country</option>    
-		                <option value="2">Pakistan</option>    
+		                <option value="2">bangladesh</option>    
 		                <option value="3">Algeria</option>    
 		                <option value="4">Afghanistan</option>    
 		                <option value="5">Ghana</option>    
@@ -54,14 +73,18 @@ else{
 		            <div class="form-group row">
 		              <div class="col-md-12">
 		                <label for="c_fname" class="text-black">Full Name <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_fname" name="c_fname" value="<?php echo $d[1];?>">
+		                <input type="text" class="form-control" id="c_fname" name="c_fname" value="<?php echo $arr[1]; ?>">
 		              </div>
+		            
 		            </div>
+
+		           
 
 		            <div class="form-group row">
 		              <div class="col-md-12">
 		                <label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address" value="<?php echo $d[6];?>">
+		                <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address" 
+						value="<?php echo $arr[6]; ?>">
 		              </div>
 		            </div>
 
@@ -72,13 +95,7 @@ else{
 		            <div class="form-group row">
 		              <div class="col-md-6">
 		                <label for="c_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
-						<select id="c_state_country" class="form-control">
-		                <option value="1">Select a State</option>    
-		                <option value="2">Sindh</option>    
-		                <option value="3">Punjab</option>    
-		                <option value="4">Balochistan</option>    
-		                <option value="5">Khyber Pakhtun Khwa</option>      
-		              </select>
+		                <input type="text" class="form-control" id="c_state_country" name="c_state_country">
 		              </div>
 		              <div class="col-md-6">
 		                <label for="c_postal_zip" class="text-black">Posta / Zip <span class="text-danger">*</span></label>
@@ -89,15 +106,17 @@ else{
 		            <div class="form-group row mb-5">
 		              <div class="col-md-6">
 		                <label for="c_email_address" class="text-black">Email Address <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_email_address" name="c_email_address" value="<?php echo $d[3];?>">
+		                <input type="text" class="form-control" id="c_email_address" name="c_email_address" value="<?php echo $arr[2]; ?>">
 		              </div>
 		              <div class="col-md-6">
 		                <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-		                <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number" value="<?php echo $d[5];?>">
+		                <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Phone Number" value="<?php echo $arr[5]; ?>">
 		              </div>
 		            </div>
 
-		            
+		           
+
+		           
 
 		            <div class="form-group">
 		              <label for="c_order_notes" class="text-black">Order Notes</label>
@@ -108,23 +127,26 @@ else{
 		        </div>
 		        <div class="col-md-6">
 
-
+		          
 		          <div class="row mb-5">
 		            <div class="col-md-12">
 		              <h2 class="h3 mb-3 text-black">Your Order</h2>
 		              <div class="p-3 p-lg-5 border bg-white">
 		                <table class="table site-block-order-table mb-5">
+		                  
 		                  <tbody>
+		                   
 		                    <tr>
 		                      <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-		                      <td class="text-black font-weight-bold"><strong>Rs. <?php echo $_SESSION["total"]?></strong></td>
+		                      <td class="text-black font-weight-bold"><strong>Rs. <?php echo  $_SESSION["total_price"]; ?></strong></td>
 		                    </tr>
 		                  </tbody>
 		                </table>
 
+		               
 
 		                <div class="border p-3 mb-5">
-		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Cash On Delivery</a></h3>
+		                  <h3 class="h6 mb-0"><a class="d-block" data-bs-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Cash on Delivery</a></h3>
 
 		                  <div class="collapse" id="collapsepaypal">
 		                    <div class="py-2">
@@ -134,7 +156,7 @@ else{
 		                </div>
 
 		                <div class="form-group">
-		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout2.php'">Place Order</button>
+		                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout_insert_data.php'">Place Order</button>
 		                </div>
 
 		              </div>
@@ -146,6 +168,8 @@ else{
 		      <!-- </form> -->
 		    </div>
 		  </div>
+		  <?php include ("footer.php");?>
 
-<?php include("footer.php");?>
-		
+	</body>
+
+</html>

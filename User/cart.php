@@ -35,6 +35,10 @@
 
 		<div class="untree_co-section before-footer-section">
             <div class="container">
+
+          
+
+
               <div class="row mb-5">
                 <form class="col-md-12" method="post">
                   <div class="site-blocks-table">
@@ -54,6 +58,7 @@
 						<?php
 							$i = 0;
 							$total=0; 
+              $_SESSION["total_price"] =0;
 							if (!empty($_SESSION["mycart"])) {
 								// Convert array to string
 
@@ -63,7 +68,7 @@
 								while ($data=mysqli_fetch_array($run)) { ?>
 									<tr>
 									<td class="product-thumbnail">
-									  <img src="../Admin/<?php echo $data[5]; ?>" alt="Image" class="img-fluid">
+									  <img src="../Admin/<?php echo $data[6]; ?>" alt="Image" class="img-fluid">
 									</td>
 									<td class="product-name">
 									  <h2 class="h5 text-black"><?php echo $data[1]; ?></h2>
@@ -79,8 +84,8 @@
 								  
 				  
 						<?php	
-						$total = 	$data[2] * $_SESSION["qty"][$i] + $total;	
-            				
+						$total = 	$data[2] * $_SESSION["qty"][$i] + $total;		
+           
 						$i++;
 					}
 							} else { ?>
@@ -136,10 +141,9 @@
                           <span class="text-black">Total Amount</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">Rs. <?php 
-                          $_SESSION["total"] = $total + 150;
-                          echo $total + 150;
-                          	?></strong>
+                          <strong class="text-black">Rs. <?php echo 
+                           $_SESSION["total_price"]			= $total + 150;	
+                          $total + 150?></strong>
                         </div>
                       </div>
         

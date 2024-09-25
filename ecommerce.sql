@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2024 at 09:07 AM
+-- Generation Time: Sep 25, 2024 at 09:41 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `about_us` (
   `ID` int(11) NOT NULL,
   `Title` varchar(25) NOT NULL,
-  `Description` varchar(1000) NOT NULL,
+  `Description` varchar(300) NOT NULL,
   `Added_At` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,7 +39,8 @@ CREATE TABLE `about_us` (
 --
 
 INSERT INTO `about_us` (`ID`, `Title`, `Description`, `Added_At`) VALUES
-(3, 'Offerings', ' Outline what you sell or the services you provide. Highlight any unique or standout features.', '2024-08-30 07:14:01');
+(1, 'Our Story', '    Our journey began with a passion for [industry/interest] and a desire to create a shopping  \r\n    ', '2024-08-25 17:29:08'),
+(2, 'Innovation and Technology', 'We invest in cutting-edge technology to enhance your shopping experience. ', '2024-08-25 17:30:29');
 
 -- --------------------------------------------------------
 
@@ -49,7 +50,7 @@ INSERT INTO `about_us` (`ID`, `Title`, `Description`, `Added_At`) VALUES
 
 CREATE TABLE `category` (
   `ID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
+  `Name` varchar(25) NOT NULL,
   `Recorded inserted` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -58,11 +59,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`ID`, `Name`, `Recorded inserted`) VALUES
-(6, 'Living Room', '2024-08-21 06:43:13'),
-(7, 'household furniture', '2024-08-27 17:07:01'),
-(8, 'office furniture', '2024-08-27 17:07:37'),
-(9, 'kitchen cabinets', '2024-08-27 17:07:49'),
-(10, 'wood products', '2024-08-27 17:08:01');
+(1, 'Cosmetics', '2024-08-21 06:33:44'),
+(7, 'Jewellery', '2024-09-06 06:11:27'),
+(8, 'Perfume', '2024-09-06 06:15:16'),
+(9, 'Men Cloth', '2024-09-06 06:21:21');
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,7 @@ CREATE TABLE `contact` (
   `First Name` varchar(20) NOT NULL,
   `Last Name` varchar(20) NOT NULL,
   `E_Mail` varchar(30) NOT NULL,
-  `Message` varchar(500) NOT NULL,
+  `Message` varchar(150) NOT NULL,
   `Submit_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -85,8 +85,7 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`ID`, `First Name`, `Last Name`, `E_Mail`, `Message`, `Submit_at`) VALUES
 (1, 'Muhammad ', 'Anees', 'kjsfefe@gmail.com', '', '2024-08-23 07:06:56'),
-(3, 'Muhammad', 'Anees', 'kjsfef@gmail.com', '', '2024-08-23 07:09:07'),
-(4, 'Muhammad', 'Anees', 'kjsfef2@gmail.com', 'ji', '2024-08-23 07:10:23');
+(3, 'Muhammad', 'Anees', 'kjsfef@gmail.com', '', '2024-08-23 07:09:07');
 
 -- --------------------------------------------------------
 
@@ -96,8 +95,8 @@ INSERT INTO `contact` (`ID`, `First Name`, `Last Name`, `E_Mail`, `Message`, `Su
 
 CREATE TABLE `faq` (
   `ID` int(11) NOT NULL,
-  `Question` varchar(200) NOT NULL,
-  `Answer` varchar(1000) NOT NULL,
+  `Question` varchar(100) NOT NULL,
+  `Answer` varchar(100) NOT NULL,
   `Added_At` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -106,9 +105,29 @@ CREATE TABLE `faq` (
 --
 
 INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Added_At`) VALUES
-(4, 'Can I modify or cancel my order?', 'If you need to modify or cancel your order, please contact us as soon as possible. Orders can be modified or canceled within [number of hours/days] of placing them. Once an order is in the processing or shipping stage, changes may not be possible.   ', 0),
-(5, ' How do I place an order?', 'To place an order, follow these steps:  Browse our product catalog and select the items you wish to purchase. Add the items to your shopping cart. Proceed to checkout and enter your shipping and payment information. Review your order and confirm the purchase. You will receive an order confirmation email once your purchase is complete.', 0),
-(7, ' How can I track my order?', 'Once your order has shipped, you will receive a tracking number via email. You can use this tracking number to monitor your shipment’s progress through our shipping carrier’s website.', 0);
+(1, 'How are You?', 'I am Fine', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_tbl`
+--
+
+CREATE TABLE `order_tbl` (
+  `Id` int(11) NOT NULL,
+  `Cart_id` varchar(50) NOT NULL,
+  `User_id` int(11) NOT NULL,
+  `Bill` bigint(20) NOT NULL,
+  `Status` varchar(50) NOT NULL DEFAULT 'Order Received'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_tbl`
+--
+
+INSERT INTO `order_tbl` (`Id`, `Cart_id`, `User_id`, `Bill`, `Status`) VALUES
+(1, 'Array', 2, 3750, 'Order Received'),
+(2, '9', 2, 68146, 'Order Received');
 
 -- --------------------------------------------------------
 
@@ -118,21 +137,9 @@ INSERT INTO `faq` (`ID`, `Question`, `Answer`, `Added_At`) VALUES
 
 CREATE TABLE `privacy` (
   `ID` int(11) NOT NULL,
-  `Description` varchar(1000) NOT NULL,
+  `Description` varchar(400) NOT NULL,
   `Added_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `privacy`
---
-
-INSERT INTO `privacy` (`ID`, `Description`, `Added_at`) VALUES
-(3, 'We implement reasonable security measures to protect your personal information from unauthorized access, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is completely secure, so we cannot guarantee absolute securityservices.        ', '2024-08-26 07:45:04'),
-(4, 'Personal Identification Information: Name, email address, phone number, and other contact details you provide.', '2024-08-26 07:45:23'),
-(5, 'Usage Data: Information about how you use our website, including IP address, browser type, pages visited, and time spent on the site.', '2024-08-26 07:45:36'),
-(6, 'To Send Promotional Communications: If you have opted in, we may send you newsletters, updates, and marketing materials. You can opt out of these communications at any time.', '2024-08-26 07:45:50'),
-(7, 'For Legal Reasons: If required by law or to protect our rights, we may disclose information in response to legal requests or to prevent harm.', '2024-08-26 07:46:09'),
-(8, 'We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on our website with an updated effective date. Your continued use of the site after changes are made constitutes your acceptance of the revised policy.', '2024-08-26 07:46:26');
 
 -- --------------------------------------------------------
 
@@ -144,27 +151,23 @@ CREATE TABLE `product` (
   `ID` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL,
   `Price` bigint(20) NOT NULL,
-  `Detail` varchar(250) NOT NULL,
+  `Detail` varchar(150) NOT NULL,
   `Category` int(11) NOT NULL,
-  `Product_Image` varchar(100) NOT NULL,
-  `Record_Inserted_At` timestamp NOT NULL DEFAULT current_timestamp()
+  `Record_Inserted_At` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ProductImage` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ID`, `Name`, `Price`, `Detail`, `Category`, `Product_Image`, `Record_Inserted_At`) VALUES
-(4, 'Sofas and Couches', 50000, '  Consider the cushion firmness, seat depth, and armrest height. Look for pieces with high-quality materials and construction for long-lasting comfort', 7, 'Product_Image/sofa.jpg', '2024-08-27 17:11:42'),
-(5, 'Beds', 40000, ' Mattress quality is crucial for sleep comfort. Consider factors like firmness, support, and materials. The bed frames design can also impact overall ', 7, 'Product_Image/bed.jpg', '2024-08-27 17:15:33'),
-(6, 'Corner desks', 25000, 'They are space-efficient and offer ample workspace.', 8, 'Product_Image/cor.jpeg', '2024-08-27 17:17:01'),
-(7, 'Task chairs', 15000, 'They provide basic comfort and support for tasks that dont require prolonged sitting.', 8, 'Product_Image/chair.jpg', '2024-08-27 17:17:43'),
-(8, 'Wall cabinets', 60000, ' They offer additional storage space above countertops.', 9, 'Product_Image/wall.jpg', '2024-08-27 17:18:56'),
-(11, 'Kitchen tables', 60000, 'They come in various sizes, materials, and styles.', 9, 'Product_Image/ktable.jpg', '2024-08-27 17:20:05'),
-(12, 'Desk', 5000, 'XYZ', 6, 'Product_Image/desk.jpg', '2024-08-30 07:31:28'),
-(13, 'Coffee Table', 5000, 'Glass top, wooden frame, storage drawers.', 7, 'Product_Image/Coffee_Table.jpg', '2024-09-01 17:32:17'),
-(14, 'Dresser', 20000, 'Wooden or metal frame, drawers and shelves.', 7, 'Product_Image/dresser.jpg', '2024-09-01 17:33:58'),
-(15, 'Bookshelf', 15000, ' Wooden or metal frame, open shelves or closed cabinets', 7, 'Product_Image/book.jpg', '2024-09-01 17:34:53');
+INSERT INTO `product` (`ID`, `Name`, `Price`, `Detail`, `Category`, `Record_Inserted_At`, `ProductImage`) VALUES
+(7, 'LOOSE POWDER', 2550, 'Ultra-fine powder Ultra-lightweight Long Lasting', 1, '2024-09-06 06:19:22', 'ProductImage/loose_powder04_3_.webp'),
+(8, 'Le Volume Plump & Care Li', 1200, 'New generation lip gloss with effective plumping-volumizing effect.', 1, '2024-09-06 06:20:26', 'ProductImage/main_5_2.webp'),
+(9, 'NAVY LINEN WAISTCOAT', 16999, 'Festive Collection', 9, '2024-09-06 06:22:19', 'ProductImage/ccvc-39344-c5_1_.webp'),
+(10, 'ADDICTED', 2750, 'Citrus, Spices, Woody, Leathery', 8, '2024-09-06 06:23:03', 'ProductImage/addicted_1_.webp'),
+(11, 'JANAN GOLD', 5330, ' Bergamot, Fruity (Red Apple, Pineapple), White Floral, Patchouli, Leather, Smokey, Oak Moss', 8, '2024-09-06 06:23:40', 'ProductImage/janan_-1_1__2.webp'),
+(12, 'J. POUR FEMME', 3995, 'Bergamot, Green Apple, Rose, Black currant, Peach, Amber', 8, '2024-09-06 06:24:26', 'ProductImage/pour-femme-j._1_1.webp');
 
 -- --------------------------------------------------------
 
@@ -173,23 +176,26 @@ INSERT INTO `product` (`ID`, `Name`, `Price`, `Detail`, `Category`, `Product_Ima
 --
 
 CREATE TABLE `user` (
-  `Id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
-  `EMail` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `Gender` varchar(6) NOT NULL,
-  `Phone` varchar(50) NOT NULL,
+  `PhoneNumber` varchar(50) NOT NULL,
   `Address` varchar(50) NOT NULL,
-  `Role` varchar(10) NOT NULL DEFAULT 'User'
+  `Role` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`Id`, `Name`, `EMail`, `Password`, `Gender`, `Phone`, `Address`, `Role`) VALUES
-(1, 'Manager', 'manager@gmail.com', 'admin123', 'Male', '321654987', 'Karachi, Pakistan', 'Admin'),
-(2, 'Anees', 'anees@gmail.com', '1234', 'Male', '+921369872', 'H#4,St#5,67', 'User');
+INSERT INTO `user` (`id`, `Name`, `Email`, `password`, `Gender`, `PhoneNumber`, `Address`, `Role`) VALUES
+(1, 'Super Admin', 'admin123@gmail.com', 'abcd123', 'male', '090078601', 'Karachi, nazimabad no 1', 'admin'),
+(2, 'Anees', 'anees@gmail.com', '1234', 'Male', '03122222', 'Karachi', 'user'),
+(3, 'Adeen', 'adeen@gmail.com', '22342', 'male', '4545', 'karachi', 'user'),
+(4, 'amna', 'amna@gmail.com', '123', 'female', '090078601', 'karachi, landhi', 'user'),
+(5, 'zara', 'zara@gmail.com', '111111', 'male', '03001234567', 'karachi, landhi orangi', 'user');
 
 -- --------------------------------------------------------
 
@@ -200,7 +206,7 @@ INSERT INTO `user` (`Id`, `Name`, `EMail`, `Password`, `Gender`, `Phone`, `Addre
 CREATE TABLE `website_info` (
   `ID` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL,
-  `Description` varchar(500) NOT NULL,
+  `Description` varchar(100) NOT NULL,
   `E-Mail` varchar(30) NOT NULL,
   `Phone Number` varchar(15) NOT NULL,
   `Address` varchar(50) NOT NULL,
@@ -215,7 +221,7 @@ CREATE TABLE `website_info` (
 --
 
 INSERT INTO `website_info` (`ID`, `Name`, `Description`, `E-Mail`, `Phone Number`, `Address`, `Facebook Link`, `Insta Link`, `Timing`, `Added_At`) VALUES
-(1, 'Furni', 'Meet our team of [mention team attributes or roles], who are here to ensure that your experience with us is nothing short of exceptional', 'aiyhaakbar@gmail.com', '+923343102536', 'H#5034846', 'https://www.facebook.com/', 'https://www.instagram.com/', '13:49:00', '2024-08-25 17:47:18');
+(1, 'Furniture', 'Hi', 'aiyshaakbar572@gmail.com', '+923343102536', 'H#5034846', 'https://www.facebook.com/', 'https://www.facebook.com/', '13:49:00', '2024-08-25 17:47:18');
 
 --
 -- Indexes for dumped tables
@@ -248,6 +254,13 @@ ALTER TABLE `faq`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `User_id` (`User_id`);
+
+--
 -- Indexes for table `privacy`
 --
 ALTER TABLE `privacy`
@@ -265,8 +278,8 @@ ALTER TABLE `product`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `E-Mail` (`EMail`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- Indexes for table `website_info`
@@ -282,7 +295,7 @@ ALTER TABLE `website_info`
 -- AUTO_INCREMENT for table `about_us`
 --
 ALTER TABLE `about_us`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -300,25 +313,31 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `faq`
 --
 ALTER TABLE `faq`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `privacy`
 --
 ALTER TABLE `privacy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `website_info`
@@ -329,6 +348,12 @@ ALTER TABLE `website_info`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `order_tbl`
+--
+ALTER TABLE `order_tbl`
+  ADD CONSTRAINT `order_tbl_ibfk_1` FOREIGN KEY (`User_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `product`
