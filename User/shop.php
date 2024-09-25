@@ -53,6 +53,14 @@
 
 						unset($_SESSION["msg"]);
 					}
+					if(isset($_SESSION["order_placed"])){
+						echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+							'. $_SESSION["order_placed"] .'
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>';
+
+						unset($_SESSION["order_placed"]);
+					}
 				
 				?>
 				<form action="" method="get">
@@ -109,7 +117,7 @@
 						while ($data = mysqli_fetch_array($run)) {
 							echo "<div class='col-md-3 mt-4'>";
 							echo '<div class="card" style="width: 18rem;">
-							<img src="../Admin/'.$data[6].'" class="card-img-top" alt="..." height ="300">
+							<img src="../Admin/'.$data[5].'" class="card-img-top" alt="..." height ="300">
 							<div class="card-body">
 							  <h5 class="text-capitalize card-title">'. $data[1].'</h5>
 							  <p class="card-text text-success">Rs. '. $data[2].'</p>
@@ -128,7 +136,7 @@
 						while ($data = mysqli_fetch_array($run)) {
 							echo "<div class='col-md-3 mt-4'>";
 							echo '<div class="card" style="width: 18rem;">
-							<img src="../Admin/'.$data[6].'" class="card-img-top" alt="..." height ="300">
+							<img src="../Admin/'.$data[5].'" class="card-img-top" alt="..." height ="300">
 							<div class="card-body">
 							  <h5 class="text-capitalize card-title">'. $data[1].'</h5>
 							  <p class="card-text  text-success">Rs '. $data[2].'</p>

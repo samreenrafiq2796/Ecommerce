@@ -12,14 +12,11 @@
             $_SESSION["mycart"] = array();
             $_SESSION["qty"] = array();
         }
-
-
-
-    $id = $_GET["p"];
+    $id = $_GET["des"];
     $fetch_query = "select * from product where id=$id";
     $run = mysqli_query($conn,$fetch_query);
     $a = mysqli_fetch_array($run);
-    
+
     ?>
     <div class="container">
         <div class="row">
@@ -46,6 +43,5 @@
 
     <?php include "footer.php"; ?>
 
-    
+
 </body>
-</html>
