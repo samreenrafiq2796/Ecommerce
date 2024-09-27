@@ -68,7 +68,7 @@
 								while ($data=mysqli_fetch_array($run)) { ?>
 									<tr>
 									<td class="product-thumbnail">
-									  <img src="../Admin/<?php echo $data[6]; ?>" alt="Image" class="img-fluid">
+									  <img src="../Admin/<?php echo $data[5]; ?>" alt="Image" class="img-fluid">
 									</td>
 									<td class="product-name">
 									  <h2 class="h5 text-black"><?php echo $data[1]; ?></h2>

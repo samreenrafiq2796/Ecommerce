@@ -108,6 +108,31 @@ session_start();
           <span>Website Info</span>
           </a>
           </li>
+          <li class="nav-item active">
+          <a class="nav-link" href="showorder.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Recieved Order</span>
+          </a>
+          </li>
+          <li class="nav-item active">
+          <a class="nav-link" href="confirmorder.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Confirmed Order</span>
+          </a>
+          </li>
+          <li class="nav-item active">
+          <a class="nav-link" href="dispatchorder.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dispatched Oreder</span>
+          </a>
+          </li>
+          <li class="nav-item active">
+          <a class="nav-link" href="shippedorder.php">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Shipped Order</span>
+          </a>
+          </li>
+          
           </ul>
         <!-- End of Sidebar -->
 
